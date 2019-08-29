@@ -3,7 +3,7 @@
 const open = require("react-dev-utils/openBrowser");
 const dev = require("./lib/dev");
 
-const opt = {};
+const opt = { port: 8080 };
 
 dev(opt)
   .then(res => {
