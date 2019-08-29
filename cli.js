@@ -9,7 +9,7 @@ dev(opt)
   .then(res => {
     const url = "http://localhost:" + res.port;
     open(url);
-    consol.log(url);
+    console.log(url);
   })
   .catch(err => {
     console.log(err);
