@@ -123,7 +123,7 @@ const Dot = styled.button(
 )
 
 Dot.defaultProps = {
-  m: 1,
+  m: 0,
   p: 1,
   bg: 'currentcolor'
 }
