@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/tag'
 import styled, { ThemeProvider } from 'styled-components'
-import { width, height, color } from 'styled-system'
+import { space, width, height, color } from 'styled-system'
 import debounce from 'debounce'
 
 import defaultTheme from './theme'
@@ -90,15 +90,76 @@ export const Slide = styled.div(
     width: '100%',
     height: '100%'
   },
+  space,
   color
 )
 
 Slide.defaultProps = {
+  p: 3,
   color: 'text',
   bg: 'background'
 }
 
-export const Root = styled.div([], {}, props => props.theme.css, width, height)
+const Dot = styled.button(
+  [],
+  {
+    appearance: 'none',
+    background: 'transparent',
+    border: '4px solid transparent',
+    backgroundClip: 'padding-box',
+    borderRadius: '9999px',
+    width: '8px',
+    height: '8px',
+    '&:focus': {
+      outline: 'none',
+      boxShadow: '0 0 0 1px'
+    }
+  },
+  props => ({
+    opacity: props.active ? 0.5 : 0.125
+  }),
+  space,
+  color
+)
+
+Dot.defaultProps = {
+  m: 1,
+  p: 1,
+  bg: 'currentcolor'
+}
+
+const Flex = styled.div(
+  [],
+  {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  space
+)
+
+export const Dots = ({ index, length, onClick, ...props }) => (
+  <Flex {...props}>
+    {Array.from({ length }).map((n, i) => (
+      <Dot
+        key={i}
+        active={i <= index}
+        title={'go to: ' + i}
+        onClick={e => {
+          onClick(i)
+        }}
+      />
+    ))}
+  </Flex>
+)
+
+export const Root = styled.div(
+  [],
+  {},
+  props => (props.theme.font ? { fontFamily: props.theme.font } : null),
+  props => props.theme.css,
+  width,
+  height
+)
 export default class SlideDeck extends React.Component {
   static propTypes = {
     slides: PropTypes.array.isRequired
@@ -144,7 +205,7 @@ export default class SlideDeck extends React.Component {
 
   render() {
     const { slides, theme, components, width, height } = this.props
-    const { index } = this.state
+    const { index, length } = this.state
 
     return (
       <ThemeProvider theme={theme}>
@@ -162,11 +223,13 @@ export default class SlideDeck extends React.Component {
                 </Slide>
               ))}
             </Carousel>
-            <samp>
-              {this.state.index + 1}/{this.state.length}
-            </samp>
-            <button onClick={e => this.update(dec)}>previous</button>
-            <button onClick={e => this.update(inc)}>next</button>
+            <Dots
+              mt={-48}
+              mx='auto'
+              index={index}
+              length={length}
+              onClick={index => this.setState(index)}
+            />
           </Root>
         </MDXProvider>
       </ThemeProvider>
