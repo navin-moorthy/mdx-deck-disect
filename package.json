@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prepare": "babel src -d dist",
-    "start": "./cli.js docs/index.mdx -p 8989"
+    "start": "node ./cli.js docs/index.mdx -p 8080"
   },
   "keywords": [],
   "author": "Brent Jackson",

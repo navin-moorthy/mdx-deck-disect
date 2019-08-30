@@ -8,6 +8,9 @@ import debounce from 'debounce'
 import defaultTheme from './theme'
 import defaultComponents from './components'
 
+export { default as Theme } from './theme'
+export { default as Components } from './components'
+
 export const inc = state => ({ index: (state.index + 1) % state.length })
 export const dec = state =>
   state.index > 0 ? { index: (state.index - 1) % state.length } : null
