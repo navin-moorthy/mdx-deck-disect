@@ -191,7 +191,7 @@ export default class SlideDeck extends React.Component {
               mx='auto'
               index={index}
               length={length}
-              onClick={index => this.setState(index)}
+              onClick={index => this.setState({ index })}
             />
           </Root>
         </MDXProvider>

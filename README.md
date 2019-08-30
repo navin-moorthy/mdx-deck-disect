@@ -44,7 +44,7 @@ To import components, use ES import syntax separated with empty lines from any m
 ```mdx
 import { Box } from 'grid-styled'
 
-<Box color="tomato">Hello</Box>
+<Box color='tomato'>Hello</Box>
 ```
 
 ### Theming
@@ -108,6 +108,7 @@ TK
 ---
 
 - [ ] default styles
+- [ ] URL hash
 - [ ] Root provider
 - [ ] export build
 
