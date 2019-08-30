@@ -8,8 +8,9 @@ import debounce from 'debounce'
 import defaultTheme from './theme'
 import defaultComponents from './components'
 
-export { default as Theme } from './theme'
-export { default as Components } from './components'
+export { default as theme } from './theme'
+export { default as components } from './components'
+export { default as Image } from './Image'
 
 export const inc = state => ({ index: (state.index + 1) % state.length })
 export const dec = state =>
@@ -63,7 +64,9 @@ export const Slide = styled.div(
 )
 
 Slide.defaultProps = {
-  p: [4, 5, 6],
+  px: [4, 5, 6],
+  pt: [3, 4],
+  pb: [4, 5],
   color: 'text',
   bg: 'background'
 }
@@ -89,7 +92,6 @@ const Dot = styled.button(
   space,
   color
 )
-
 Dot.defaultProps = {
   m: 0,
   p: 1,
@@ -123,11 +125,17 @@ export const Dots = ({ index, length, onClick, ...props }) => (
 export const Root = styled.div(
   [],
   {},
-  props => (props.theme.font ? { fontFamily: props.theme.font } : null),
+  props =>
+    props.theme.font
+      ? {
+          fontFamily: props.theme.font
+        }
+      : null,
   props => props.theme.css,
   width,
   height
 )
+
 export default class SlideDeck extends React.Component {
   static propTypes = {
     slides: PropTypes.array.isRequired
@@ -196,11 +204,13 @@ export default class SlideDeck extends React.Component {
               ))}
             </Carousel>
             <Dots
-              mt={-48}
+              mt={-32}
               mx='auto'
               index={index}
               length={length}
-              onClick={index => this.setState({ index })}
+              onClick={index => {
+                this.setState({ index })
+              }}
             />
           </Root>
         </MDXProvider>

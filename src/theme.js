@@ -9,7 +9,7 @@ export default {
     heading: '#000',
     quote: '#000',
     code: '#f0f',
-    codeBackground: '#333'
+    codeBackground: 'transparent'
   },
   css: {
     fontSize: '32px'

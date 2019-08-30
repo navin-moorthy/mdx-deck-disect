@@ -1,6 +1,8 @@
 # mdx-deck
 
-Create presentation decks with [MDX][]
+[MDX][]-based presention decks
+
+**Beta**
 
 ```sh
 npm i mdx-deck
@@ -107,11 +109,18 @@ TK
 
 ---
 
-- [ ] default styles
-- [ ] URL hash
-- [ ] Root provider
-- [ ] export build
+- [ ] add default themes
+- [ ] theme docs
+- [ ] exporting docs
+- [ ] components docs
+- [ ] Provider docs
+- [x] Full Image component
+- [x] Root provider
+- [x] default styles
+- [x] export build
+- [x] URL hash
 
 [mdx]: https://github.com/mdx-js/mdx
 [mdxprovider]: https://github.com/mdx-js/mdx#mdxprovider
 [styled-system]: https://github.com/jxnblk/styled-system
+[styled-components]: https://github.com/styled-components/styled-components
