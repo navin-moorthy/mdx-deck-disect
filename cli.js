@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-const meow = require("meow");
-const open = require("react-dev-utils/openBrowser");
-const chalk = require("chalk");
-const dev = require("./lib/dev");
+const meow = require('meow')
+const open = require('react-dev-utils/openBrowser')
+const chalk = require('chalk')
+const dev = require('./lib/dev')
 
-const config = require("pkg-conf").sync("mdx-deck");
+const config = require('pkg-conf').sync('mdx-deck')
 
 const log = (...arg) => {
-  console.log(chalk.magenta("[mdx-deck]"), ...arg);
-};
+  console.log(chalk.magenta('[mdx-deck]'), ...arg)
+}
 
 log.error = (...arg) => {
-  console.log(chalk.red("[err]"), ...arg);
-};
+  console.log(chalk.red('[err]'), ...arg)
+}
 
 const cli = meow(
   `
@@ -27,30 +27,30 @@ const cli = meow(
   {
     flags: {
       port: {
-        type: "string",
-        alias: "p"
+        type: 'string',
+        alias: 'p'
       },
       open: {
-        type: "boolean",
-        alias: "o",
+        type: 'boolean',
+        alias: 'o',
         default: true
       }
     }
   }
-);
+)
 
-const [entry] = cli.input;
+const [entry] = cli.input
 
-if (!entry) cli.showHelp(0);
+if (!entry) cli.showHelp(0)
 
-const opt = Object.assign({ port: 8080, entry }, config, cli.flags);
+const opt = Object.assign({ entry }, config, cli.flags)
 
 dev(opt)
   .then(res => {
-    const url = "http://localhost:" + res.port;
-    open(url);
-    console.log(url);
+    const url = 'http://localhost:' + res.port
+    open(url)
+    console.log(url)
   })
   .catch(err => {
-    console.log(err);
-  });
+    console.log(err)
+  })
