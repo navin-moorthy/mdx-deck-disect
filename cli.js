@@ -4,7 +4,7 @@ const path = require('path')
 const meow = require('meow')
 const open = require('react-dev-utils/openBrowser')
 const chalk = require('chalk')
-const dev = require('ok-cli')
+const ok = require('ok-cli')
 
 const config = require('pkg-conf').sync('mdx-deck')
 
@@ -65,11 +65,13 @@ const cli = meow(
   }
 )
 
-const [doc] = cli.input
+const [cmd, file] = cli.input
+
+const doc = cmd || file
 
 if (!doc) cli.showHelp(0)
 
-const opt = Object.assign(
+const opts = Object.assign(
   {
     entry: path.join(__dirname, './lib/entry.js'),
     dirname: path.dirname(path.resolve(doc)),
@@ -82,12 +84,28 @@ const opt = Object.assign(
   cli.flags
 )
 
-dev(opt)
-  .then(res => {
-    const url = 'http://localhost:' + res.port
-    open(url)
-    console.log(url)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+switch (cmd) {
+  case 'build':
+    log('exporting')
+    ok.build(opts)
+      .then(res => log('done'))
+      .catch(err => {
+        log.error(err)
+        process.exit(1)
+      })
+    break
+  case 'dev':
+  default:
+    log('starting dev server')
+    ok(opts)
+      .then(res => {
+        const url = 'http://localhost:' + res.port
+        open(url)
+        log('listening on', chalk.magenta(url))
+      })
+      .catch(err => {
+        log.error(err)
+        process.exit(1)
+      })
+    break
+}
