@@ -4,8 +4,6 @@
 
 [MDX][]-based presention decks
 
-**Beta**
-
 ```sh
 npm i -D mdx-deck
 ```

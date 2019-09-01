@@ -27,13 +27,13 @@ const getConfig = conf => {
             presets: [
               'babel-preset-env',
               'babel-preset-stage-0',
-              'babel-preset-react',
-            ].map(require.resolve),
-          },
+              'babel-preset-react'
+            ].map(require.resolve)
+          }
         },
-        require.resolve('./lib/loader.js'),
-      ],
-    },
+        require.resolve('./lib/loader.js')
+      ]
+    }
   ]
   conf.module.rules[1].include.push(path.join(__dirname, './src'))
 
@@ -54,19 +54,24 @@ const cli = meow(
 
     --no-open   Prevent from opening in default browser
 
+    --title     Title for the HTML document
+
 `,
   {
     flags: {
       port: {
         type: 'string',
-        alias: 'p',
+        alias: 'p'
       },
       open: {
         type: 'boolean',
         alias: 'o',
-        default: true,
+        default: true
       },
-    },
+      title: {
+        type: 'string'
+      }
+    }
   }
 )
 
@@ -80,9 +85,10 @@ const opts = Object.assign(
     entry: path.join(__dirname, './src/entry.js'),
     dirname: path.dirname(path.resolve(doc)),
     globals: {
-      DOC_FILENAME: JSON.stringify(path.resolve(doc)),
+      DOC_FILENAME: JSON.stringify(path.resolve(doc))
     },
     config: getConfig,
+    title: 'mdx-deck'
   },
   config,
   cli.flags

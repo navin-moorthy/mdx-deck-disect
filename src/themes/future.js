@@ -10,17 +10,18 @@ export default {
     link: blue,
     pre: blue,
     preBackground: '#000',
-    code: blue,
+    code: blue
   },
   css: {
-    textAlign: 'center',
+    fontSize: '32px',
+    textAlign: 'center'
   },
   heading: {
     textTransform: 'uppercase',
     letterSpacing: '0.1em',
-    fontWeight: 600,
+    fontWeight: 600
   },
   quote: {
-    fontWeight: 600,
-  },
+    fontWeight: 600
+  }
 }
