@@ -139,14 +139,14 @@ Root.defaultProps = {
 
 export const GoogleFonts = withTheme(({ theme }) => {
   const links = [
-    webfont.getURL(theme.font),
-    webfont.getURL(theme.monospace)
+    webfont.getURL(theme.font || ''),
+    webfont.getURL(theme.monospace || '')
   ].filter(Boolean)
   if (!links.length) return false
   return (
     <React.Fragment>
       {links.map((href, i) => (
-        <link key={i} href={href} rel='stylesheet' />
+        <link key={i} href={href} rel="stylesheet" />
       ))}
     </React.Fragment>
   )
@@ -237,7 +237,7 @@ export class SlideDeck extends React.Component {
             </Carousel>
             <Dots
               mt={-32}
-              mx='auto'
+              mx="auto"
               index={index}
               length={length}
               onClick={index => {
