@@ -1,6 +1,6 @@
 {
   "name": "mdx-deck",
-  "version": "1.0.0-1",
+  "version": "1.0.0-6",
   "description": "MDX-based slide deck presentations",
   "main": "dist/index.js",
   "bin": {
@@ -16,22 +16,25 @@
   "license": "MIT",
   "dependencies": {
     "@compositor/webfont": "^1.0.37",
+    "@mdx-js/mdx": "^0.15.0-1",
     "@mdx-js/tag": "^0.14.1",
     "chalk": "^2.4.1",
     "clipboardy": "^1.2.3",
-    "debounce": "^1.1.0",
     "gray-matter": "^4.0.1",
-    "lodash.throttle": "^4.1.1",
+    "lodash.debounce": "^4.0.8",
     "meow": "^5.0.0",
     "ok-cli": "^3.0.2",
     "pkg-conf": "^2.1.0",
     "prop-types": "^15.6.2",
+    "react": "^16.4.1",
     "react-dev-utils": "^5.0.1",
     "stringify-object": "^3.2.2",
-    "styled-components": "^3.3.3",
+    "styled-components": ">=3.0.0",
     "styled-system": "^3.0.2",
-    "superbox": "^2.1.0"
+    "superbox": "^2.1.0",
+    "webpack-hot-client": "^4.1.1"
   },
+  "peerDependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0"
   }

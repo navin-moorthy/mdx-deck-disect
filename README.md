@@ -1,5 +1,7 @@
 # mdx-deck
 
+![](https://s3.amazonaws.com/jxnblk/mdx-deck.gif)
+
 [MDX][]-based presention decks
 
 **Beta**

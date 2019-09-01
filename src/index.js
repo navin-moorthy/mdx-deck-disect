@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/tag'
 import styled, { ThemeProvider, withTheme } from 'styled-components'
 import { space, width, height, color } from 'styled-system'
-import debounce from 'debounce'
+import debounce from 'lodash.debounce'
 import webfont from '@compositor/webfont'
 
 import defaultTheme from './themes'
