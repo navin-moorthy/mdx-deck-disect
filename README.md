@@ -2,7 +2,7 @@
 
 ![](https://s3.amazonaws.com/jxnblk/mdx-deck.gif)
 
-[MDX][]-based presention decks
+[MDX][]-based presention decks (**Beta**)
 
 ```sh
 npm i -D mdx-deck
@@ -12,6 +12,8 @@ npm i -D mdx-deck
 - :atom_symbol: Import and use React components
 - :nail_care: Customizable themes and components
 - :zero: Zero-config CLI
+
+[View demo](https://jxnblk.com/mdx-deck)
 
 ## Getting Started
 
@@ -116,21 +118,21 @@ export default {
     pre: '#f0f',
     preBackground: '#333',
     code: '#f0f',
-    codeBackground: 'transparent',
+    codeBackground: 'transparent'
   },
   css: {
     // apply any styles to the root element
   },
   // custom CSS can be provided to any of the default components:
   heading: {
-    fontWeight: 400,
+    fontWeight: 400
   },
   link: {
     textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
+      textDecoration: 'underline'
+    }
+  }
 }
 ```
 
@@ -195,10 +197,10 @@ module.exports = {
       {
         test: /\.mdx$/,
         ignore: /node_modules/,
-        use: ['babel-loader', 'mdx-deck/loader'],
-      },
-    ],
-  },
+        use: ['babel-loader', 'mdx-deck/loader']
+      }
+    ]
+  }
 }
 ```
 
@@ -229,6 +231,9 @@ View the source for other components available for use.
 ### Related
 
 - [MDX][]
+- [ok-mdx][]
+- [ok-cli][]
+- [Compositor x0][]
 - [styled-components][]
 - [styled-system][]
 - [Spectacle][]
@@ -237,6 +242,9 @@ View the source for other components available for use.
 
 [mdx]: https://github.com/mdx-js/mdx
 [mdxprovider]: https://github.com/mdx-js/mdx#mdxprovider
+[ok-mdx]: https://github.com/jxnblk/ok-mdx
+[ok-cli]: https://github.com/jxnblk/ok-mdx/tree/master/packages/ok-cli
+[compositor x0]: https://github.com/c8r/x0
 [styled-system]: https://github.com/jxnblk/styled-system
 [styled-components]: https://github.com/styled-components/styled-components
 [create-react-app]: https://github.com/facebook/create-react-app

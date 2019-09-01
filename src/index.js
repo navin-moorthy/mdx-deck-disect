@@ -23,7 +23,7 @@ export const dec = state =>
 const CarouselRoot = styled.div([], {
   overflowX: 'hidden',
   width: '100%',
-  height: '100%',
+  height: '100%'
 })
 
 const CarouselInner = styled.div(
@@ -34,10 +34,10 @@ const CarouselInner = styled.div(
     height: '100%',
     transitionProperty: 'transform',
     transitionTimingFunction: 'ease-out',
-    transitionDuration: '.3s',
+    transitionDuration: '.3s'
   },
   props => ({
-    transform: `translateX(${-100 * props.index}%)`,
+    transform: `translateX(${-100 * props.index}%)`
   })
 )
 
@@ -57,16 +57,14 @@ export const Slide = styled.div(
     flexDirection: 'column',
     overflow: 'hidden',
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
   space,
   color
 )
 
 Slide.defaultProps = {
-  px: [4, 5, 6],
-  pt: [3, 4],
-  pb: [4, 5],
+  px: [4, 5, 6]
 }
 
 const Dot = styled.button(
@@ -81,11 +79,11 @@ const Dot = styled.button(
     color: 'inherit',
     '&:focus': {
       outline: 'none',
-      boxShadow: '0 0 0 1px',
-    },
+      boxShadow: '0 0 0 1px'
+    }
   },
   props => ({
-    opacity: props.active ? 0.5 : 0.125,
+    opacity: props.active ? 0.5 : 0.125
   }),
   space,
   color
@@ -93,14 +91,14 @@ const Dot = styled.button(
 Dot.defaultProps = {
   m: 0,
   p: 1,
-  bg: 'currentcolor',
+  bg: 'currentcolor'
 }
 
 const Flex = styled.div(
   [],
   {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   space
 )
@@ -126,7 +124,7 @@ export const Root = styled.div(
   props =>
     props.theme.font
       ? {
-          fontFamily: props.theme.font,
+          fontFamily: props.theme.font
         }
       : null,
   props => props.theme.css,
@@ -136,13 +134,13 @@ export const Root = styled.div(
 )
 Root.defaultProps = {
   color: 'text',
-  bg: 'background',
+  bg: 'background'
 }
 
 export const GoogleFonts = withTheme(({ theme }) => {
   const links = [
     webfont.getURL(theme.font),
-    webfont.getURL(theme.monospace),
+    webfont.getURL(theme.monospace)
   ].filter(Boolean)
   if (!links.length) return false
   return (
@@ -156,7 +154,7 @@ export const GoogleFonts = withTheme(({ theme }) => {
 
 export class SlideDeck extends React.Component {
   static propTypes = {
-    slides: PropTypes.array.isRequired,
+    slides: PropTypes.array.isRequired
   }
 
   static defaultProps = {
@@ -164,12 +162,12 @@ export class SlideDeck extends React.Component {
     theme: defaultTheme,
     components: defaultComponents,
     width: '100vw',
-    height: '100vh',
+    height: '100vh'
   }
 
   state = {
     length: this.props.slides.length,
-    index: 0,
+    index: 0
   }
 
   update = fn => this.setState(fn)
@@ -189,19 +187,34 @@ export class SlideDeck extends React.Component {
     }
   }
 
-  componentDidMount() {
-    document.body.addEventListener('keydown', this.handleKeyDown)
+  handleHashChange = e => {
+    this.isHashChange = true
+    this.hashToState()
+  }
+
+  hashToState = () => {
     const { hash } = window.location
     const index = parseInt(hash.replace(/^#/, ''), 10)
     if (isNaN(index)) return
     this.setState({ index })
   }
 
+  componentDidMount() {
+    document.body.addEventListener('keydown', this.handleKeyDown)
+    window.addEventListener('hashchange', this.handleHashChange)
+    this.hashToState()
+  }
+
   componentWillUnmount() {
     document.body.removeEventListener('keydown', this.handleKeyDown)
+    window.removeEventListener('hashchange', this.handleHashChange)
   }
 
   componentDidUpdate() {
+    if (this.isHashChange) {
+      this.isHashChange = false
+      return
+    }
     const { index } = this.state
     history.pushState(null, null, '/#' + index)
   }
