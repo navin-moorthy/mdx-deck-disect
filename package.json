@@ -1,6 +1,6 @@
 {
   "name": "mdx-deck",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "MDX-based slide deck presentations",
   "main": "dist/index.js",
   "bin": {
@@ -23,7 +23,7 @@
     "gray-matter": "^4.0.1",
     "lodash.throttle": "^4.1.1",
     "meow": "^5.0.0",
-    "ok-cli": "^3.0.0-9",
+    "ok-cli": "^3.0.2",
     "pkg-conf": "^2.1.0",
     "prop-types": "^15.6.2",
     "react-dev-utils": "^5.0.1",

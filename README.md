@@ -5,8 +5,13 @@
 **Beta**
 
 ```sh
-npm i mdx-deck
+npm i -D mdx-deck
 ```
+
+- :memo: Write presentations in markdown
+- :atom_symbol: Import and use React components
+- :nail_care: Customizable themes and components
+- :zero: Zero-config CLI
 
 ## Getting Started
 
@@ -34,10 +39,19 @@ import Demo from './components/Demo'
 # The end
 ````
 
-Run the CLI pointing to the `.mdx` file to start the dev server:
+Add a run script to your `package.json` with the mdx-deck CLI
+pointing to the `.mdx` file to start the dev server:
+
+```json
+"scripts": {
+  "start": "mdx-deck deck.mdx"
+}
+```
+
+Start the dev server:
 
 ```sh
-mdx-deck deck.mdx
+npm start
 ```
 
 ## Usage
@@ -212,7 +226,14 @@ View the source for other components available for use.
 
 ---
 
-[MIT License][license.md]
+### Related
+
+- [MDX][]
+- [styled-components][]
+- [styled-system][]
+- [Spectacle][]
+
+[MIT License](LICENSE.md)
 
 [mdx]: https://github.com/mdx-js/mdx
 [mdxprovider]: https://github.com/mdx-js/mdx#mdxprovider
@@ -220,3 +241,4 @@ View the source for other components available for use.
 [styled-components]: https://github.com/styled-components/styled-components
 [create-react-app]: https://github.com/facebook/create-react-app
 [next.js]: https://github.com/zeit/next.js/
+[spectacle]: https://github.com/FormidableLabs/spectacle
