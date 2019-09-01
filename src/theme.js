@@ -4,7 +4,7 @@ export default {
   fontSizes: [16, 24, 32, 48, 64, 96, 128],
   colors: {
     text: '#000',
-    background: '#fff',
+    background: 'transparent',
     link: '#07c',
     heading: '#000',
     quote: '#000',

@@ -37,15 +37,11 @@ const CarouselInner = styled.div(
   })
 )
 
-export class Carousel extends React.Component {
-  render() {
-    return (
-      <CarouselRoot>
-        <CarouselInner {...this.props} />
-      </CarouselRoot>
-    )
-  }
-}
+export const Carousel = props => (
+  <CarouselRoot>
+    <CarouselInner {...this.props} />
+  </CarouselRoot>
+)
 
 export const Slide = styled.div(
   [],
@@ -136,7 +132,7 @@ export const Root = styled.div(
   height
 )
 
-export default class SlideDeck extends React.Component {
+export class SlideDeck extends React.Component {
   static propTypes = {
     slides: PropTypes.array.isRequired
   }
