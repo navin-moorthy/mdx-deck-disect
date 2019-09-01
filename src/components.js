@@ -7,7 +7,7 @@ const css = key => props => props.theme[key]
 const Heading = styled.h1(
   [],
   {
-    lineHeight: 1.25
+    lineHeight: 1.25,
   },
   fontSize,
   space,
@@ -17,7 +17,7 @@ const Heading = styled.h1(
 Heading.defaultProps = {
   color: 'heading',
   mt: 3,
-  mb: 3
+  mb: 3,
 }
 
 const H2 = Heading.withComponent('h2')
@@ -41,7 +41,7 @@ const h6 = props => <H6 {...props} fontSize={[2, 3]} />
 const a = styled.a([], color, css('link'))
 a.defaultProps = {
   target: '_blank',
-  color: 'link'
+  color: 'link',
 }
 
 const p = styled.p([], fontSize, space, color, css('paragraph'))
@@ -49,25 +49,25 @@ const p = styled.p([], fontSize, space, color, css('paragraph'))
 const ul = styled.ul(
   [],
   {
-    textAlign: 'left'
+    textAlign: 'left',
   },
   fontSize,
   css('ul')
 )
 ul.defaultProps = {
-  fontSize: [2, 3]
+  fontSize: [2, 3],
 }
 
 const ol = styled.ol(
   [],
   {
-    textAlign: 'left'
+    textAlign: 'left',
   },
   fontSize,
   css('ol')
 )
 ol.defaultProps = {
-  fontSize: [2, 3]
+  fontSize: [2, 3],
 }
 const li = styled.li([])
 
@@ -75,7 +75,7 @@ const blockquote = styled.blockquote(
   [],
   {
     textAlign: 'left',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   fontSize,
   space,
@@ -86,13 +86,13 @@ blockquote.defaultProps = {
   fontSize: [2, 3, 4],
   px: 0,
   mx: 0,
-  color: 'quote'
+  color: 'quote',
 }
 
 const pre = styled.pre(
   [],
   props => ({
-    fontFamily: props.theme.monospace
+    fontFamily: props.theme.monospace,
   }),
   fontSize,
   space,
@@ -104,13 +104,13 @@ pre.defaultProps = {
   m: 0,
   p: 2,
   color: 'pre',
-  bg: 'preBackground'
+  bg: 'preBackground',
 }
 
 const code = styled.code(
   [],
   props => ({
-    fontFamily: props.theme.monospace
+    fontFamily: props.theme.monospace,
   }),
   fontSize,
   space,
@@ -119,14 +119,14 @@ const code = styled.code(
 )
 code.defaultProps = {
   color: 'code',
-  bg: 'codeBackground'
+  bg: 'codeBackground',
 }
 
 const img = styled.img(
   [],
   {
     maxWidth: '100%',
-    height: 'auto'
+    height: 'auto',
   },
   css('image')
 )
@@ -147,5 +147,5 @@ export default {
   pre: props => props.children,
   code: pre,
   inlineCode: code,
-  img
+  img,
 }

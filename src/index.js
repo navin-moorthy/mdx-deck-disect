@@ -1,16 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MDXProvider } from '@mdx-js/tag'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, withTheme } from 'styled-components'
 import { space, width, height, color } from 'styled-system'
 import debounce from 'debounce'
+import webfont from '@compositor/webfont'
 
-import defaultTheme from './theme'
+import defaultTheme from './themes'
 import defaultComponents from './components'
 
-export { default as theme } from './theme'
-export { default as components } from './components'
 export { default as Image } from './Image'
+export { default as components } from './components'
+
+// themes
+export { default as theme } from './themes'
+export * as themes from './themes'
 
 export const inc = state => ({ index: (state.index + 1) % state.length })
 export const dec = state =>
@@ -19,7 +23,7 @@ export const dec = state =>
 const CarouselRoot = styled.div([], {
   overflowX: 'hidden',
   width: '100%',
-  height: '100%'
+  height: '100%',
 })
 
 const CarouselInner = styled.div(
@@ -30,16 +34,16 @@ const CarouselInner = styled.div(
     height: '100%',
     transitionProperty: 'transform',
     transitionTimingFunction: 'ease-out',
-    transitionDuration: '.3s'
+    transitionDuration: '.3s',
   },
   props => ({
-    transform: `translateX(${-100 * props.index}%)`
+    transform: `translateX(${-100 * props.index}%)`,
   })
 )
 
 export const Carousel = props => (
   <CarouselRoot>
-    <CarouselInner {...this.props} />
+    <CarouselInner {...props} />
   </CarouselRoot>
 )
 
@@ -53,7 +57,7 @@ export const Slide = styled.div(
     flexDirection: 'column',
     overflow: 'hidden',
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   space,
   color
@@ -63,27 +67,25 @@ Slide.defaultProps = {
   px: [4, 5, 6],
   pt: [3, 4],
   pb: [4, 5],
-  color: 'text',
-  bg: 'background'
 }
 
 const Dot = styled.button(
   [],
   {
     appearance: 'none',
-    background: 'transparent',
     border: '4px solid transparent',
     backgroundClip: 'padding-box',
     borderRadius: '9999px',
     width: '8px',
     height: '8px',
+    color: 'inherit',
     '&:focus': {
       outline: 'none',
-      boxShadow: '0 0 0 1px'
-    }
+      boxShadow: '0 0 0 1px',
+    },
   },
   props => ({
-    opacity: props.active ? 0.5 : 0.125
+    opacity: props.active ? 0.5 : 0.125,
   }),
   space,
   color
@@ -91,14 +93,14 @@ const Dot = styled.button(
 Dot.defaultProps = {
   m: 0,
   p: 1,
-  bg: 'currentcolor'
+  bg: 'currentcolor',
 }
 
 const Flex = styled.div(
   [],
   {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   space
 )
@@ -124,17 +126,37 @@ export const Root = styled.div(
   props =>
     props.theme.font
       ? {
-          fontFamily: props.theme.font
+          fontFamily: props.theme.font,
         }
       : null,
   props => props.theme.css,
   width,
-  height
+  height,
+  color
 )
+Root.defaultProps = {
+  color: 'text',
+  bg: 'background',
+}
+
+export const GoogleFonts = withTheme(({ theme }) => {
+  const links = [
+    webfont.getURL(theme.font),
+    webfont.getURL(theme.monospace),
+  ].filter(Boolean)
+  if (!links.length) return false
+  return (
+    <React.Fragment>
+      {links.map((href, i) => (
+        <link key={i} href={href} rel='stylesheet' />
+      ))}
+    </React.Fragment>
+  )
+})
 
 export class SlideDeck extends React.Component {
   static propTypes = {
-    slides: PropTypes.array.isRequired
+    slides: PropTypes.array.isRequired,
   }
 
   static defaultProps = {
@@ -142,12 +164,12 @@ export class SlideDeck extends React.Component {
     theme: defaultTheme,
     components: defaultComponents,
     width: '100vw',
-    height: '100vh'
+    height: '100vh',
   }
 
   state = {
     length: this.props.slides.length,
-    index: 0
+    index: 0,
   }
 
   update = fn => this.setState(fn)
@@ -192,6 +214,7 @@ export class SlideDeck extends React.Component {
       <ThemeProvider theme={theme}>
         <MDXProvider components={components}>
           <Root width={width} height={height}>
+            <GoogleFonts />
             <Carousel index={index}>
               {slides.map((Component, i) => (
                 <Slide key={i} id={'slide-' + i}>
@@ -214,3 +237,5 @@ export class SlideDeck extends React.Component {
     )
   }
 }
+
+export default SlideDeck

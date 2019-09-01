@@ -1,21 +1,21 @@
 {
   "name": "mdx-deck",
-  "private": true,
   "version": "1.0.0-0",
   "description": "MDX-based slide deck presentations",
   "main": "dist/index.js",
   "bin": {
-    "mdx-deck": "node ./cli.js"
+    "mdx-deck": "./cli.js"
   },
   "scripts": {
     "prepare": "babel src -d dist",
-    "start": "node ./cli.js docs/index.mdx -p 8080",
-    "build": "node ./cli.js build docs/index.mdx -d site"
+    "start": "./cli.js docs/index.mdx -p 8080",
+    "build": "./cli.js build docs/index.mdx -d site"
   },
   "keywords": [],
   "author": "Brent Jackson",
   "license": "MIT",
   "dependencies": {
+    "@compositor/webfont": "^1.0.37",
     "@mdx-js/tag": "^0.14.1",
     "chalk": "^2.4.1",
     "clipboardy": "^1.2.3",

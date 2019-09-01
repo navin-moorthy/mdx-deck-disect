@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const path = require('path')
 const meow = require('meow')
 const open = require('react-dev-utils/openBrowser')
@@ -8,12 +7,11 @@ const ok = require('ok-cli')
 
 const config = require('pkg-conf').sync('mdx-deck')
 
-const log = (...arg) => {
-  console.log(chalk.magenta('[mdx-deck]'), ...arg)
+const log = (...args) => {
+  console.log(chalk.magenta('[mdx-deck]'), ...args)
 }
-
-log.error = (...arg) => {
-  console.log(chalk.red('[err]'), ...arg)
+log.error = (...args) => {
+  console.log(chalk.red('[err]'), ...args)
 }
 
 const getConfig = conf => {
@@ -29,44 +27,49 @@ const getConfig = conf => {
             presets: [
               'babel-preset-env',
               'babel-preset-stage-0',
-              'babel-preset-react'
-            ].map(require.resolve)
-          }
+              'babel-preset-react',
+            ].map(require.resolve),
+          },
         },
-        require.resolve('./lib/loader.js')
-      ]
-    }
+        require.resolve('./lib/loader.js'),
+      ],
+    },
   ]
-
   return conf
 }
 
 const cli = meow(
   `
   Usage
+
     $ mdx-deck deck.mdx
+
     $ mdx-deck build deck.mdx
+
   Options
+
     -p --port   Dev server port
+
     --no-open   Prevent from opening in default browser
-  `,
+
+`,
   {
     flags: {
       port: {
         type: 'string',
-        alias: 'p'
+        alias: 'p',
       },
       open: {
         type: 'boolean',
         alias: 'o',
-        default: true
-      }
-    }
+        default: true,
+      },
+    },
   }
 )
 
 const [cmd, file] = cli.input
-const doc = cmd || file
+const doc = file || cmd
 
 if (!doc) cli.showHelp(0)
 
@@ -75,9 +78,9 @@ const opts = Object.assign(
     entry: path.join(__dirname, './lib/entry.js'),
     dirname: path.dirname(path.resolve(doc)),
     globals: {
-      DOC_FILENAME: JSON.stringify(path.resolve(doc))
+      DOC_FILENAME: JSON.stringify(path.resolve(doc)),
     },
-    config: getConfig
+    config: getConfig,
   },
   config,
   cli.flags
@@ -87,7 +90,9 @@ switch (cmd) {
   case 'build':
     log('exporting')
     ok.build(opts)
-      .then(res => log('done'))
+      .then(res => {
+        log('done')
+      })
       .catch(err => {
         log.error(err)
         process.exit(1)

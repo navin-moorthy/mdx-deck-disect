@@ -1,3 +1,4 @@
+
 # mdx-deck
 
 [MDX][]-based presention decks
@@ -14,23 +15,17 @@ Create an [MDX][] file and separate each slide with `---`.
 
 ````mdx
 # This is the title of my deck
-
 ---
-
 # About Me
-
 ---
-
 ```jsx
 <CodeSnippet />
 ```
-
 ---
-
 import Demo from './components/Demo'
 
-## <Demo />
-
+<Demo />
+---
 # The end
 ````
 
@@ -51,7 +46,9 @@ To import components, use ES import syntax separated with empty lines from any m
 ```mdx
 import { Box } from 'grid-styled'
 
-<Box color='tomato'>Hello</Box>
+<Box color='tomato'>
+  Hello
+</Box>
 ```
 
 ### Theming
@@ -60,7 +57,20 @@ mdx-deck uses [styled-components][] for styling.
 
 ### Built-in Themes
 
-TK
+mdx-deck includes several built-in themes to change the look and feel of the presentation.
+
+```mdx
+export { dark as theme } from 'ok-cli/themes'
+
+# Dark Theme
+```
+
+The following themes are available:
+
+- `theme`: default theme with white background
+- `dark`: black background dark theme
+- `future`: dark theme with Avenir Next
+- `condensed`: dark theme with Avenir Next
 
 ### Custom Themes
 
@@ -79,7 +89,9 @@ The theme should be an object based on [styled-system][]'s theme schema.
 export default {
   font: 'Georgia',
   monospace: 'Menlo, monospace',
-  fontSizes: [16, 24, 32, 48, 64, 96, 128],
+  fontSizes: [
+    16, 24, 32, 48, 64, 96, 128
+  ],
   colors: {
     text: '#000',
     background: 'transparent',
@@ -89,7 +101,7 @@ export default {
     pre: '#f0f',
     preBackground: '#333',
     code: '#f0f',
-    codeBackground: 'transparent'
+    codeBackground: 'transparent',
   },
   css: {
     // apply any styles to the root element
@@ -101,7 +113,7 @@ export default {
   link: {
     textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
     }
   }
 }
@@ -109,7 +121,7 @@ export default {
 
 ### Custom Components
 
-mdx-deck includes default components for MDX, but to provide custom components to the [MDXProvider][], export a `components` object from your MDX file.
+mdx-deck includes default components for MDX, but to provide custom components to the [MDXProvider][], export a `components` object.
 
 ```mdx
 export { default as components } from './components'
@@ -127,7 +139,6 @@ import Layout from './Layout'
 # No Layout
 
 ---
-
 export default Layout
 
 # Custom Layout
@@ -154,7 +165,7 @@ mdx-deck build deck.mdx
 
 ## React API
 
-mdx-deck components can be used in any React application, such as [create-react-app][] or [next.js][].
+mdx-deck components can also be used in any React application, such as [create-react-app][] or [next.js][].
 
 ### Webpack Loader
 
@@ -168,7 +179,10 @@ module.exports = {
       {
         test: /\.mdx$/,
         ignore: /node_modules/,
-        use: ['babel-loader', 'mdx-deck/loader']
+        use: [
+          'babel-loader',
+          'mdx-deck/loader'
+        ]
       }
     ]
   }
@@ -184,7 +198,7 @@ import slides from './deck.mdx'
 import theme from './theme'
 import components from './components'
 
-export default () => (
+export default () =>
   <SlideDeck
     slides={slides}
     theme={theme}
@@ -192,7 +206,6 @@ export default () => (
     width='100vw'
     height='100vh'
   />
-)
 ```
 
 View the source for other components available for use.
@@ -205,10 +218,10 @@ View the source for other components available for use.
 - [ ] components docs
 - [ ] Provider docs
 
-[MIT License][license.md]
+[MIT License][LICENSE.md]
 
-[mdx]: https://github.com/mdx-js/mdx
-[mdxprovider]: https://github.com/mdx-js/mdx#mdxprovider
+[MDX]: https://github.com/mdx-js/mdx
+[MDXProvider]: https://github.com/mdx-js/mdx#mdxprovider
 [styled-system]: https://github.com/jxnblk/styled-system
 [styled-components]: https://github.com/styled-components/styled-components
 [create-react-app]: https://github.com/facebook/create-react-app

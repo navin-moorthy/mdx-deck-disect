@@ -6,7 +6,7 @@ export default ({ children }) => (
     p={4}
     bg='magenta'
     css={{
-      width: '100vw'
+      width: '100vw',
     }}
   >
     {children}

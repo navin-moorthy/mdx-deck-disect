@@ -6,10 +6,10 @@ const Image = styled.div(
   [],
   {
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
   },
   props => ({
-    backgroundImage: `url(${props.src})`
+    backgroundImage: `url(${props.src})`,
   }),
   width,
   height,
@@ -18,7 +18,7 @@ const Image = styled.div(
 
 Image.defaultProps = {
   width: '100vw',
-  height: '100vh'
+  height: '100vh',
 }
 
 export default Image
